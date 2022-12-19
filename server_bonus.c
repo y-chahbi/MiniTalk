@@ -1,23 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   server.c                                           :+:      :+:    :+:   */
+/*   server_bonus.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ychahbi <ychahbi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/18 13:47:43 by ychahbi           #+#    #+#             */
-/*   Updated: 2022/12/18 20:04:25 by ychahbi          ###   ########.fr       */
+/*   Created: 2022/12/09 15:47:16 by ychahbi           #+#    #+#             */
+/*   Updated: 2022/12/18 20:03:19 by ychahbi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minitalk.h"
+
+int	g_how_many;
 
 static void	handl(int signal, siginfo_t *info, void *ptr)
 {
 	static int	i;
 	static char	c;
 
-	(void) info;
+	g_how_many = 1;
 	(void) ptr;
 	if (signal == SIGUSR1)
 	{
@@ -34,6 +36,8 @@ static void	handl(int signal, siginfo_t *info, void *ptr)
 		i = 0;
 		c = 0;
 	}
+	if (g_how_many++ == 1)
+		kill(info->si_pid, SIGUSR1);
 }
 
 int	main(void)

@@ -1,37 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putnbr.c                                        :+:      :+:    :+:   */
+/*   minitalk.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ychahbi <ychahbi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/12 08:34:48 by ychahbi           #+#    #+#             */
-/*   Updated: 2022/12/18 13:42:47 by ychahbi          ###   ########.fr       */
+/*   Created: 2022/12/18 13:35:36 by ychahbi           #+#    #+#             */
+/*   Updated: 2022/12/18 13:45:05 by ychahbi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#ifndef MINITALK_H
+# define MINITALK_H
 
-void	ft_putnbr(int n)
-{
-	unsigned int	mv;
-	unsigned int	tmp;
+# include <signal.h>
+# include <stdio.h>
+# include <stdlib.h>
+# include <unistd.h>
+# include "extra/libft.h"
 
-	if (n < 0)
-	{
-		mv = -n;
-		write(1, "-", 1);
-	}
-	else
-		mv = n;
-	if (mv <= 9)
-	{
-		tmp = mv + 48;
-		write(1, &tmp, 1);
-	}
-	else
-	{
-		ft_putnbr(mv / 10);
-		ft_putnbr(mv % 10);
-	}
-}
+int		ft_atoi(const char *str);
+int		ft_isdigit(int c);
+void	ft_putchar(char c);
+void	ft_putnbr(int n);
+void	ft_putstr(char *s);
+
+#endif
